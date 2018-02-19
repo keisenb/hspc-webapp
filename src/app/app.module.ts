@@ -13,6 +13,7 @@ import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
 import { LogoutComponent } from './logout/logout.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { LogoutComponent } from './logout/logout.component';
     HomeComponent,
     ScoreboardComponent,
     ErrorpageComponent,
-    LogoutComponent
+    LogoutComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

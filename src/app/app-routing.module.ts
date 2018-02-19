@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { LogoutComponent } from './logout/logout.component';
+import { RegisterComponent } from './register/register.component';
 
 
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'scoreboard', component: ScoreboardComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: 'register', component: RegisterComponent },
 
   { path: '', component: HomeComponent },
   { path: '**', component: ErrorpageComponent }
