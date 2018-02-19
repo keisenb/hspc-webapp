@@ -7,8 +7,8 @@
   </div>
   <div class="uk-navbar-right">
     <ul class="uk-navbar-nav">
-      <li><a href="/dashboard">Dashboard</a></li>
-      <li class="uk-active"><a href="/{{test1}}"><button class="uk-button uk-button-default uk-button-small login-btn">{{ test }}</button></a></li>
+      <li ><a href="/{{ showDashboard() ? 'dashboard' : 'register' }}">{{ showDashboard() ? 'dashboard' : 'register' }}</a></li>
+      <li class="uk-active"><a href="/{{ loginLink() }}"><button class="uk-button uk-button-default uk-button-small login-btn">{{ loginText() }}</button></a></li>
     </ul>
   </div>
 </nav>
