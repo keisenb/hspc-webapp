@@ -24,45 +24,23 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    let err = null;
     this.loading = true;
 
     const email = 'test@test.com';
     const password = 'Password123!';
 
     this.authService.login(email, password).subscribe(
-      result => {
-
-        if (result === null) {
-          console.log('error logging in');
-          this.loading = false;
-        } else {
-          const res: any = result;
-          this.authService.setToken(res.token);
-          this.router.navigate(['/dashboard']);
-        }
-
-      },
-      error => {
-        console.log(error), err = error, this.loading = false;
+      res => {
+        this.authService.setToken(res);
+        this.isAuthenticated();
       });
   }
 
   isAuthenticated() {
-    this.loading = true;
-    this.authService.isAuthenticated().subscribe(
-      result => {
-        if (result === false) {
-          this.loading = false;
-        } else {
-          this.router.navigate(['/dashboard']);
-        }
-      },
-      error => {
-        console.log(error);
-        this.loading = false;
-      }
-    );
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/dashboard']);
+    }
+
   }
 
 }

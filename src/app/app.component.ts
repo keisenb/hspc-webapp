@@ -9,42 +9,23 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent implements OnInit {
 
-  // private isLoggedIn = false;
-  private test = '';
-  private test1 = '';
-
-
   constructor(private authService: AuthService) { }
 
-
   ngOnInit() {
-    this.isAuthenticated();
-
 
   }
 
 
+  loginLink(): string {
+    return this.authService.isLoggedIn() ? 'logout' : 'login';
+  }
 
+  loginText(): string {
+    return this.authService.isLoggedIn() ? 'Logout' : 'Login';
+  }
 
-  isAuthenticated() {
-    this.authService.isAuthenticated().subscribe(
-      result => {
-        if (result === false) {
-          console.log('not logged in');
-            this.test = 'Login';
-            this.test1 = 'login';
-
-        } else {
-          console.log('isloggdin');
-            this.test = 'Logout';
-            this.test1 = 'logout';
-
-          }
-      },
-      error => {
-        // console.log(error);
-      }
-    );
+  showDashboard(): boolean {
+    return this.authService.isLoggedIn();
   }
 
 }

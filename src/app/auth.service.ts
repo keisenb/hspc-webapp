@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError } from 'rxjs/operators';
+import * as moment from 'moment';
 
 
 @Injectable()
@@ -13,36 +14,43 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
 
-  public login(email, password) {
+  public login(email: string, password: string) {
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
       })
     };
-
     const body = {
       'Email': email,
       'Password': password
     };
 
-    return this.http.post(this.baseUrl + '/auth/login', body, httpOptions)
-    .pipe(
-      catchError(this.handleError('authenticated', { token : null } ))
-    );
+    return this.http.post(this.baseUrl + '/auth/login', body, httpOptions);
+  }
+
+  public setToken(bearer): void {
+    const expiresAt = moment().add(bearer.expires_in, 'second');
+    console.log(expiresAt);
+
+    localStorage.setItem('token', bearer.token);
+    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
 
   }
 
-  public getToken(): string {
-    return localStorage.getItem('token');
+  public isLoggedIn() {
+    const expires = this.getExpiration();
+    return moment().isAfter(expires);
   }
 
-  public setToken(token): void {
-    localStorage.setItem('token', token);
+  public isLoggedOut() {
+    return !this.isLoggedIn();
   }
 
-  public isAuthenticated() {
-    const token = this.getToken();
-    return this.tokenNotExpired(token);
+
+  public logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expires_at');
   }
 
 
@@ -53,21 +61,14 @@ export class AuthService {
             'Authorization': 'Bearer ' + token
         }
     };
-
-    return this.http.get(this.baseUrl + '/token', config).pipe(catchError(this.handleError('authenticated', false)));
+    return this.http.get(this.baseUrl + '/token', config);
   }
 
-
-  private handleError<T> (operation = 'operation', result?: T) {
-  return (error: any): Observable<T> => {
-
-    // TODO: send the error to remote logging infrastructure
-    // console.error(error); // log to console instead
-
-    // Let the app keep running by returning an empty result.
-    return of(result as T);
-  };
-}
+  private getExpiration() {
+    const expiration = localStorage.getItem('expires_at');
+    const expiresAt = JSON.parse(expiration);
+    return moment(expiresAt);
+  }
 
 
 }
