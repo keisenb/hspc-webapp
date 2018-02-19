@@ -1,0 +1,29 @@
+<div class="uk-container">
+
+  <div class="uk-grid uk-position-center">
+    <div class="uk-align-center uk-text-center uk-height-1-1">
+      <div class="uk-vertical-align-middle" style="width: 250px;">
+        <div class="icon">
+          <i class="fas fa-key fa-4x"></i>
+        </div>
+          <div class="uk-margin">
+            <div class="uk-inline">
+              <span class="uk-form-icon" uk-icon="icon: user"></span>
+              <input id="email" class="uk-input" type="text">
+            </div>
+          </div>
+          <div class="uk-margin">
+            <div class="uk-inline">
+              <span class="uk-form-icon uk-form-icon" uk-icon="icon: lock"></span>
+              <input id="password" class="uk-input" type="password">
+            </div>
+          </div>
+          <button [disabled]="loading" class="uk-button uk-button-primary login-btn" (click)="login()" type=submit>
+            <div *ngIf="loading" uk-spinner></div>
+            <div *ngIf="!loading">Login</div>
+          </button>
+
+      </div>
+    </div>
+  </div>
+</div>

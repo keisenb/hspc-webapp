@@ -19,9 +19,16 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "assets/css/uikit.min.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "assets/js/jquery.min.js",
+        "assets/js/uikit.min.js",
+        "assets/js/uikit-icons.min.js",
+        "assets/js/fontawesome-all.min.js",
+        "assets/js/login.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
