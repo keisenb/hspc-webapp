@@ -16,10 +16,13 @@ export class LoginComponent implements OnInit {
   loading = false;
 
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+
+  returnUrl: string;
 
   ngOnInit() {
     this.isAuthenticated();
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
 
   }
 
@@ -32,7 +35,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(email, password).subscribe(
       res => {
         this.authService.setToken(res);
-        this.isAuthenticated();
+        this.router.navigateByUrl(this.returnUrl);
       });
   }
 
