@@ -14,6 +14,7 @@ import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
+import { NavComponent } from './nav/nav.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { RegisterComponent } from './register/register.component';
     ScoreboardComponent,
     ErrorpageComponent,
     LogoutComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

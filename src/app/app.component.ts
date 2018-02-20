@@ -15,17 +15,4 @@ export class AppComponent implements OnInit {
 
   }
 
-
-  loginLink(): string {
-    return this.authService.isLoggedIn() ? 'logout' : 'login';
-  }
-
-  loginText(): string {
-    return this.authService.isLoggedIn() ? 'Logout' : 'Login';
-  }
-
-  showDashboard(): boolean {
-    return this.authService.isLoggedIn();
-  }
-
 }
