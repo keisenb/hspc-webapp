@@ -7,10 +7,7 @@
   .user > #name {
       font-size: 22px;
   }
-  .header {
-      box-sizing: border-box;
-      border-bottom: 1px #e5e5e5 solid;
-  }
+
 
   .statistics-text {
       font-size: 25px;
@@ -22,3 +19,11 @@
   
 
 
+.content-background {
+    min-height: calc(100% - 80px);
+    background-color: #F0F0F0;
+}
+
+.dashboard-header {
+    margin-bottom: 15px;
+}

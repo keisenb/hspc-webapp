@@ -38,7 +38,8 @@ export class AuthService {
 
   public isLoggedIn() {
     const expires = this.getExpiration();
-    return moment().isAfter(expires);
+    const now = moment();
+    return expires < now;
   }
 
   public isLoggedOut() {
