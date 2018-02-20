@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 
 import { AuthService } from '../auth.service';
@@ -16,11 +17,12 @@ export class LoginComponent implements OnInit {
   loading = false;
 
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private titleService: Title) { }
 
   returnUrl: string;
 
   ngOnInit() {
+    this.titleService.setTitle( 'Judgr - Login' );
     this.isAuthenticated();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
 
