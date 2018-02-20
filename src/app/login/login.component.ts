@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
 
 
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../_services/auth.service';
 
 import * as UIkit from 'uikit';
 
