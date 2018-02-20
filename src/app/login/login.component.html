@@ -4,25 +4,26 @@
     <div class="uk-align-center uk-text-center uk-height-1-1">
       <div class="uk-vertical-align-middle" style="width: 250px;">
         <div class="icon">
-          <i class="fas fa-key fa-4x"></i>
+          <img src="assets/images/logo.png" width="100px" height="100px" alt="test">
         </div>
+        <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
           <div class="uk-margin">
             <div class="uk-inline">
               <span class="uk-form-icon" uk-icon="icon: user"></span>
-              <input id="email" class="uk-input" type="text">
+              <input name="email" class="uk-input" minlength="3" type="text" required ngModel #email="ngModel">
             </div>
           </div>
           <div class="uk-margin">
             <div class="uk-inline">
               <span class="uk-form-icon uk-form-icon" uk-icon="icon: lock"></span>
-              <input id="password" class="uk-input" type="password">
+              <input name="password" class="uk-input" minlength="6" type="password" ngModel required #password="ngModel">
             </div>
           </div>
-          <button [disabled]="loading" class="uk-button uk-button-primary login-btn" (click)="login()" type=submit>
+          <button [disabled]="loading || !loginForm.valid" class="uk-button uk-button-primary login-btn" type=submit>
             <div *ngIf="loading" uk-spinner></div>
             <div *ngIf="!loading">Login</div>
           </button>
-
+        </form>
       </div>
     </div>
   </div>

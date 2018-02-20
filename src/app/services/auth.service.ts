@@ -31,8 +31,6 @@ export class AuthService {
 
   public setToken(bearer): void {
     const expiresAt = moment().add(bearer.expires_in, 'second');
-    console.log(expiresAt);
-
     localStorage.setItem('token', bearer.token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
 
@@ -56,7 +54,6 @@ export class AuthService {
 
 
   private tokenNotExpired(token) {
-    console.log(token);
     const config = { headers:  {
             'Authorization': 'Bearer ' + token
         }
