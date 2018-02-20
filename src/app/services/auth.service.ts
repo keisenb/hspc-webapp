@@ -4,12 +4,13 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError } from 'rxjs/operators';
 import * as moment from 'moment';
+import { environment } from '../../environments/environment';
 
 
 @Injectable()
 export class AuthService {
 
-  private baseUrl = 'http://localhost:5000';
+  private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 
