@@ -54,7 +54,13 @@ export class LoginComponent implements OnInit {
       res => {
         this.authService.setToken(res);
         this.router.navigateByUrl(this.returnUrl);
-        UIkit.notification({message: 'Notification message'});
+        UIkit.notification(
+          {
+            message: '<i class="fas fa-check-circle"></i> ' + 'Successfully logged in!',
+            status: 'success',
+            timeout: 3000
+          }
+        );
 
       },
       err => {
