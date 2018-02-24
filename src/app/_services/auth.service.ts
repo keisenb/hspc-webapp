@@ -31,7 +31,9 @@ export class AuthService {
   }
 
   public setToken(bearer): void {
-    const expiresAt = moment().add(bearer.expires_in, 'second');
+    console.log(bearer.expires);
+    const expiresAt = moment(bearer.expires);
+    console.log(expiresAt);
     localStorage.setItem('token', bearer.token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
 
@@ -40,7 +42,7 @@ export class AuthService {
   public isLoggedIn() {
     const expires = this.getExpiration();
     const now = moment();
-    return expires < now;
+    return expires > now;
   }
 
   public isLoggedOut() {

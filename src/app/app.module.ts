@@ -15,6 +15,8 @@ import { AuthGuardService } from './_services/auth-guard.service';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { NavComponent } from './nav/nav.component';
+import { WebsocketService } from './_services/websocket.service';
+import { ChatService } from './_services/chat.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,7 @@ import { NavComponent } from './nav/nav.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthService, AuthGuardService, Title],
+  providers: [AuthService, AuthGuardService, Title, WebsocketService, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
