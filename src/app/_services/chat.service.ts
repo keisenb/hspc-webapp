@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import { Subject } from 'rxjs/Subject';
 import { WebsocketService } from './websocket.service';
 
-const CHAT_URL = 'ws://echo.websocket.org/';
+const CHAT_URL = 'wss://echo.websocket.org/';
 
 export interface Message {
   author: string;
