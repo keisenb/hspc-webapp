@@ -4,12 +4,13 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError } from 'rxjs/operators';
 import * as moment from 'moment';
+import { environment } from '../../environments/environment';
 
 
 @Injectable()
 export class AuthService {
 
-  private baseUrl = 'http://localhost:5000';
+  private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -30,9 +31,9 @@ export class AuthService {
   }
 
   public setToken(bearer): void {
-    const expiresAt = moment().add(bearer.expires_in, 'second');
+    console.log(bearer.expires);
+    const expiresAt = moment(bearer.expires);
     console.log(expiresAt);
-
     localStorage.setItem('token', bearer.token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
 
@@ -40,7 +41,8 @@ export class AuthService {
 
   public isLoggedIn() {
     const expires = this.getExpiration();
-    return moment().isAfter(expires);
+    const now = moment();
+    return expires > now;
   }
 
   public isLoggedOut() {
@@ -56,7 +58,6 @@ export class AuthService {
 
 
   private tokenNotExpired(token) {
-    console.log(token);
     const config = { headers:  {
             'Authorization': 'Bearer ' + token
         }
