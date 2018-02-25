@@ -31,9 +31,7 @@ export class AuthService {
   }
 
   public setToken(bearer): void {
-    console.log(bearer.expires);
     const expiresAt = moment(bearer.expires);
-    console.log(expiresAt);
     localStorage.setItem('token', bearer.token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
 
