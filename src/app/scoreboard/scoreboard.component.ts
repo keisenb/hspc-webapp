@@ -9,7 +9,10 @@ export class ScoreboardComponent implements OnInit {
 
   constructor() { }
 
+
   ngOnInit() {
+
   }
+
 
 }

@@ -5,7 +5,6 @@ import { WebsocketService } from '../_services/websocket.service';
 import { ChatService } from '../_services/chat.service';
 
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,10 +12,10 @@ import { ChatService } from '../_services/chat.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private titleService: Title, private chatService: ChatService) {
-    chatService.messages.subscribe(msg => {
+  constructor(private titleService: Title) {
+    /* chatService.messages.subscribe(msg => {
       console.log('Response from websocket: ' + msg);
-    });
+    });*/
   }
 
   private message = {
@@ -27,12 +26,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('Judgr - Home');
+
   }
 
-  sendMsg() {
+  /*sendMsg() {
     console.log('new message from client to websocket: ', this.message);
     this.chatService.messages.next(this.message);
     this.message.message = '';
-  }
+  }*/
 
 }
