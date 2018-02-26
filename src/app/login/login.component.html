@@ -10,7 +10,7 @@
           <div class="uk-margin">
             <div class="uk-inline">
               <span class="uk-form-icon" uk-icon="icon: user"></span>
-              <input name="email" class="uk-input" autofocus minlength="3" type="text" placeholder="Email" required ngModel #email="ngModel">
+              <input name="email" class="uk-input" autofocus minlength="3" type="text" placeholder="Email" required ngModel #email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
 
             </div>
           </div>

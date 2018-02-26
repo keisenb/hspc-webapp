@@ -21,6 +21,7 @@ import { NavComponent } from './nav/nav.component';
 import { WebsocketService } from './_services/websocket.service';
 import { ChatService } from './_services/chat.service';
 import { HttpService } from './_services/http.service';
+import { EqualDirective } from './_directives/equal.directive';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HttpService } from './_services/http.service';
     ErrorpageComponent,
     LogoutComponent,
     RegisterComponent,
-    NavComponent
+    NavComponent,
+    EqualDirective
   ],
   imports: [
     BrowserModule,
