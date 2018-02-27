@@ -1,5 +1,4 @@
 <div class="uk-container">
-
   <div class=" uk-position-center">
     <div class="uk-align-center uk-text-center uk-height-1-1">
       <div class="uk-vertical-align-middle" style="width: 250px;">
@@ -7,7 +6,7 @@
           <img src="assets/images/logo.png" width="100px" height="100px" alt="test">
         </div>
         <div [hidden]="(email.valid || email.pristine)" class="uk-alert uk-alert-warning">Email is not valid.</div>
-        <div [hidden]="(password.valid || password.pristine || email.invalid)" class="uk-alert uk-alert-warning">Password is not valid.</div>
+        <div [hidden]="(password.valid || password.pristine || email.invalid)" class="uk-alert uk-alert-warning">Password requires upper and lowercase, number, and special character.</div>
         <div [hidden]="confirmPassword.valid || confirmPassword.pristine || password.invalid" class="uk-alert uk-alert-warning">Passwords do not match</div>
         <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
           <div class="uk-margin">
@@ -19,7 +18,7 @@
           <div class="uk-margin">
             <div class="uk-inline">
               <span class="uk-form-icon uk-form-icon" uk-icon="icon: lock"></span>
-              <input name="password" class="uk-input" minlength="6" type="password" placeholder="Password" ngModel required #password="ngModel">
+              <input name="password" class="uk-input" minlength="6" type="password" placeholder="Password" ngModel required #password="ngModel" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,}">
             </div>
           </div>
           <div class="uk-margin">

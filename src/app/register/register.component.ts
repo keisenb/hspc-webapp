@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 
 import { AuthService } from '../_services/auth.service';
+import { ToastService } from '../_services/toast.service';
 
 import * as UIkit from 'uikit';
 
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit {
 
   loading = false;
 
-  constructor(private authService: AuthService, private router: Router, private title: Title) { }
+  constructor(private authService: AuthService, private router: Router, private title: Title, private toastService: ToastService) { }
 
   ngOnInit() {
     this.isAuthenticated();
@@ -31,19 +32,42 @@ export class RegisterComponent implements OnInit {
     const confirmPassword = registerForm.controls['confirmPassword'];
     // validate password and confirm password
     if (email.valid && password.valid && confirmPassword.valid) {
-      if (password.value === confirmPassword.value) {
-        this.register(email.value, password.value);
-      } else {
-        // todo respond to frontend
-        console.log('passwords dont match');
-      }
+      this.register(email.value, password.value, registerForm);
     }
-
   }
 
-  register(email: string, password: string) {
-    this.loading = true;
 
+
+  register(email: string, password: string, registerForm: NgForm) {
+    this.loading = true;
+    this.authService.register(email, password).subscribe(
+      res => {
+        this.authService.setToken(res);
+        this.router.navigateByUrl('dashboard');
+        this.toastService.toast('Successfully registered!', 'fa-check-circle', 'success', '3000');
+      },
+      err => {
+        if (err.status === 400) {
+          registerForm.controls['password'].reset();
+          registerForm.controls['confirmPassword'].reset();
+          // todo add more specific error responses (for loop through error messages to make UIkit notifications)
+          for (const error of err.error.errors) {
+            switch (error.code) {
+              case 'DuplicateUserName': {
+                this.toastService.toast('Username already in use!', 'fa-exclamation-circle', 'danger', '3000');
+                break; // break the last case only to not show default case
+              }
+              case 'default': {
+                this.toastService.toast('Issue registering!', 'fa-exclamation-circle', 'danger', '3000');
+              }
+            }
+          }
+
+        } else {
+          this.toastService.toast('Unknown error!', 'question-mark', 'danger', '3000');
+        }
+        this.loading = false;
+      });
   }
 
 
@@ -52,5 +76,6 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['/dashboard']);
     }
   }
+
 
 }

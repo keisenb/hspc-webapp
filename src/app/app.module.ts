@@ -15,6 +15,7 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { AuthService } from './_services/auth.service';
 import { AuthGuardService } from './_services/auth-guard.service';
+import { ToastService } from './_services/toast.service';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { NavComponent } from './nav/nav.component';
@@ -44,6 +45,7 @@ import { EqualDirective } from './_directives/equal.directive';
     FormsModule
   ],
   providers: [
+    ToastService,
     AuthService,
     AuthGuardService,
     Title,
