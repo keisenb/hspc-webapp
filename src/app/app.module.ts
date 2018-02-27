@@ -15,12 +15,14 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { AuthService } from './_services/auth.service';
 import { AuthGuardService } from './_services/auth-guard.service';
+import { ToastService } from './_services/toast.service';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { NavComponent } from './nav/nav.component';
 import { WebsocketService } from './_services/websocket.service';
 import { ChatService } from './_services/chat.service';
 import { HttpService } from './_services/http.service';
+import { EqualDirective } from './_directives/equal.directive';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { HttpService } from './_services/http.service';
     ErrorpageComponent,
     LogoutComponent,
     RegisterComponent,
-    NavComponent
+    NavComponent,
+    EqualDirective
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { HttpService } from './_services/http.service';
     FormsModule
   ],
   providers: [
+    ToastService,
     AuthService,
     AuthGuardService,
     Title,

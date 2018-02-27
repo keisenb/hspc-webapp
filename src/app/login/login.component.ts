@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 
 
 import { AuthService } from '../_services/auth.service';
+import { ToastService } from '../_services/toast.service';
 
 import * as UIkit from 'uikit';
 
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private titleService: Title
+    private titleService: Title,
+    private toastService: ToastService
   ) { }
 
   returnUrl: string;
@@ -54,34 +56,14 @@ export class LoginComponent implements OnInit {
       res => {
         this.authService.setToken(res);
         this.router.navigateByUrl(this.returnUrl);
-        UIkit.notification(
-          {
-            message: '<i class="fas fa-check-circle"></i> ' + 'Successfully logged in!',
-            status: 'success',
-            timeout: 3000
-          }
-        );
-
+        this.toastService.toast('Successfully logged in!', 'fa-check-circle', 'success', '3000');
       },
       err => {
         if (err.status === 401) {
-          UIkit.notification(
-            {
-              message: '<i class="fas fa-exclamation-circle"></i> ' + 'Invalid username or password',
-              status: 'danger',
-              timeout: '3000'
-            }
-          );
+          this.toastService.toast('Invalid username or password!', 'fa-exclamation-circle', 'danger', '3000');
         } else {
-          UIkit.notification(
-            {
-              message: '<span uk-icon=' + 'icon: question-mark' + '></span>' + 'Unknown error!',
-              status: 'danger',
-              timeout: '3000'
-            }
-          );
+          this.toastService.toast('Unknown error!', 'question-mark', 'danger', '3000');
         }
-
         this.loading = false;
       });
   }

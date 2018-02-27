@@ -30,6 +30,20 @@ export class AuthService {
     return this.http.post(this.baseUrl + '/auth/login', body, httpOptions);
   }
 
+  public register(email: string, password: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    const body = {
+      'Email': email,
+      'Password': password
+    };
+
+    return this.http.post(this.baseUrl + '/auth/register', body, httpOptions);
+  }
+
   public setToken(bearer): void {
     const expiresAt = moment(bearer.expires);
     localStorage.setItem('token', bearer.token);
