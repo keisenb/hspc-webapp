@@ -21,6 +21,7 @@
   background-color: white;
 }
 
-.form-input {
-  width: 100%;
+.alert {
+  padding-right: 0;
+  padding-left: 0;
 }
