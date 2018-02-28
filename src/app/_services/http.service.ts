@@ -6,12 +6,17 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import * as UIkit from 'uikit';
+import { ToastService } from './toast.service';
 
 
 @Injectable()
 export class HttpService extends Http {
 
-  constructor(backend: XHRBackend, defaultOptions: RequestOptions, private router: Router) {
+  constructor(backend: XHRBackend,
+              private defaultOptions: RequestOptions,
+              private router: Router,
+              private toastService: ToastService
+            ) {
     super(backend, defaultOptions);
   }
 
@@ -31,13 +36,7 @@ export class HttpService extends Http {
   private catchErrors() {
     return (res: Response) => {
       if (res.status === 401 || res.status === 403) {
-        UIkit.notification(
-          {
-            message: '<i class="fas fa-exclamation-circle"></i> ' + 'Please login to continue.',
-            status: 'danger',
-            timeout: '3000'
-          }
-        );
+        this.toastService.toast('Please login to continue.', 'fa-exclamation-circle', 'danger', '3000');
         this.router.navigate(['login'], { queryParams: { returnUrl: this.router.url }});
       }
       if (res.status === 500) {
