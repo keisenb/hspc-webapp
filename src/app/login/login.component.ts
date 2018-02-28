@@ -7,9 +7,6 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { ToastService } from '../_services/toast.service';
 
-import * as UIkit from 'uikit';
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -62,7 +59,7 @@ export class LoginComponent implements OnInit {
         if (err.status === 401) {
           this.toastService.toast('Invalid username or password!', 'fa-exclamation-circle', 'danger', '3000');
         } else {
-          this.toastService.toast('Unknown error!', 'question-mark', 'danger', '3000');
+          this.toastService.toast('Unknown error!', 'fa-question-circle', 'danger', '3000');
         }
         this.loading = false;
       });

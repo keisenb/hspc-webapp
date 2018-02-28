@@ -11,5 +11,16 @@
 }
 
 .login-btn {
-  border-radius: 3px;
+  width: 100%;
+}
+
+.login-btn:enabled {
+  color: #1e87f0;
+  border-style: solid;
+  border-color: #1e87f0;
+  background-color: white;
+}
+
+.form-input {
+  width: 100%;
 }
