@@ -1,13 +1,14 @@
 <div class="uk-container">
   <div class=" uk-position-center">
     <div class="uk-align-center uk-text-center uk-height-1-1">
+        <div class="uk-vertical-align-middle uk-width-1-1">
+
         <div class="icon">
           <img src="assets/images/logo.png" width="100px" height="100px" alt="test">
         </div>
         <div [hidden]="(email.valid || email.pristine || email.untouched)" class="uk-alert uk-alert-warning alert">Not a valid email address.</div>
-        <div [hidden]="(password.valid || password.pristine || email.invalid || password.untouched)" class="uk-alert uk-alert-warning alert">Password requires uppercase, lowercase, number, special character, and a minimum length of 6.</div>
+        <div [hidden]="(password.valid || password.pristine || email.invalid || password.untouched)" class="uk-alert uk-alert-warning password-alert">Password requires uppercase, lowercase, number, special character, and a minimum length of 6.</div>
         <div [hidden]="confirmPassword.valid || confirmPassword.pristine || password.invalid" class="uk-alert uk-alert-warning alert">Passwords do not match.</div>
-        <div class="uk-vertical-align-middle uk-width-1-1">
 
         <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
           <div class="uk-margin">

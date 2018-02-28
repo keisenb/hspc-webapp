@@ -11,8 +11,7 @@
 }
 
 .login-btn {
-  width: 100%;
-
+  width: 219px;
 }
 
 .login-btn:enabled {
@@ -25,4 +24,9 @@
 .alert {
   padding-right: 0;
   padding-left: 0;
+}
+
+.password-alert {
+  margin-left: 2em;
+  margin-right: 2em;
 }
