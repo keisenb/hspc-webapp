@@ -21,16 +21,6 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  testNotAuth() {
-    localStorage.clear();
-    this.http.get(this.baseUrl + '/token').subscribe(
-      res => {
-        console.log('you are authd');
-      },
-      err => {
-        console.log('not auth');
-        // console.log(err);
-      });
-  }
+
 
 }

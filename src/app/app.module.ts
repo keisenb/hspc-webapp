@@ -24,6 +24,7 @@ import { ChatService } from './_services/chat.service';
 import { HttpService } from './_services/http.service';
 import { EqualDirective } from './_directives/equal.directive';
 import { AdminComponent } from './admin/admin.component';
+import { DashboardService } from './_services/dashboard.service';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,8 @@ import { AdminComponent } from './admin/admin.component';
     AuthService,
     AuthGuardService,
     Title,
+    HttpService,
+    DashboardService,
     WebsocketService,
     ChatService,
     { provide: Http, useClass: HttpService }
