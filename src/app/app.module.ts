@@ -23,6 +23,7 @@ import { WebsocketService } from './_services/websocket.service';
 import { ChatService } from './_services/chat.service';
 import { HttpService } from './_services/http.service';
 import { EqualDirective } from './_directives/equal.directive';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { EqualDirective } from './_directives/equal.directive';
     LogoutComponent,
     RegisterComponent,
     NavComponent,
-    EqualDirective
+    EqualDirective,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
