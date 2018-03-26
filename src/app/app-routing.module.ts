@@ -9,6 +9,7 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
+import { TeamListComponent } from './team-list/team-list.component';
 
 
 import { AuthGuardService as AuthGuard } from './_services/auth-guard.service';

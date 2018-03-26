@@ -1,0 +1,34 @@
+<div class="uk-card uk-card-default uk-card-hover">
+  <div class="uk-card-header">
+    {{title}}
+  </div>
+  <div class="uk-card-body">
+    <table class="uk-table uk-table-striped uk-table-middle">
+      <thead>
+        <tr>
+          <th>Team Name</th>
+          <th>Mark For Judging</th>
+          <th>Correct Answer</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let team of teams$">
+          <td>{{team.name}}</td>
+          <td>
+            <button class="uk-button uk-button-default uk-button-small" type="button">
+              <i class="fas fa-check"></i>
+            </button>
+          </td>
+          <td>
+            <button class="uk-button uk-button-default uk-button-small" type="button" disabled>
+              <i class="fas fa-check"></i>
+            </button>
+            <button class="uk-button uk-button-default uk-button-small" type="button" disabled>
+              <i class="fas fa-ban"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

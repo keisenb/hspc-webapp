@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   constructor(private titleService: Title, private http: Http) { }
 
   baseUrl = environment.baseUrl;
+  selected = false;
 
   ngOnInit() {
     this.titleService.setTitle( 'Judgr - Dashboard' );
@@ -21,6 +22,10 @@ export class DashboardComponent implements OnInit {
   }
 
 
+  showList() {
+    console.log('working');
+    this.selected = !this.selected;
+  }
 
 
 }
