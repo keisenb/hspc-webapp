@@ -3,14 +3,17 @@
     <div class="uk-section-small">
         <div class="uk-container uk-container-large">
             <button (click)="showList()">test</button>
-            <div *ngIf="selected" uk-grid class="uk-child-width-1-1@s uk-child-width-1-2@l">
-                <div>
-                    <app-beginner-team-list title="Beginner Team"></app-beginner-team-list>
-                </div>
-                <div>
-                   <app-advanced-team-list></app-advanced-team-list>
+            <div *ngIf="selected">
+                <div uk-grid class="uk-child-width-1-1@s uk-child-width-1-2@l">
+                    <div>
+                        <app-team-list title="Beginner Team" beginner="true"></app-team-list>
+                    </div>
+                    <div>
+                        <app-team-list title="Advanced Team" advanced="true"></app-team-list>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

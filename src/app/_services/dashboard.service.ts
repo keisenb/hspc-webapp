@@ -12,7 +12,7 @@ export class DashboardService {
     return this.http.get(environment.baseUrl + '/teams/beginner');
   }
 
-  public Advancedteams() {
+  public AdvancedTeams() {
     return this.http.get(environment.baseUrl + '/teams/advanced');
   }
 
@@ -38,6 +38,14 @@ export class DashboardService {
 
   public Problem(id: number) {
     return this.http.get(environment.baseUrl + '/problems/' + id);
+  }
+
+  public MarkTeamForJudging(problemId: number, teamId: number) {
+    const body = {
+      'TeamId' : teamId,
+      'ProblemId' : problemId
+    };
+    return this.http.post(environment.baseUrl + '/judge/mark', body);
   }
 
 }

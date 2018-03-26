@@ -23,8 +23,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Team 1</td>
+                    <tr *ngFor="let beginnerTeam of beginnerTeams$">
+                        <td>{{beginnerTeam.name}}</td>
                     <td>
                       <button class="uk-button uk-button-default uk-button-small" type="button">
                         <i class="fas fa-trash"></i>
@@ -58,8 +58,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Team 1</td>
+                    <tr *ngFor="let advancedTeam of advancedTeams$">
+                        <td>{{advancedTeam.name}}</td>
                     <td>
                       <button class="uk-button uk-button-default uk-button-small" type="button">
                         <i class="fas fa-trash"></i>
@@ -76,7 +76,7 @@
         <div>
           <div class="uk-card uk-card-default uk-card-hover">
             <div class="uk-card-header">
-              Beginner Questions
+              Beginner Problems
               <span class="uk-text-center fa-plus-span">
                   <button class="uk-button uk-button-default uk-button-small" type="button">
                       <i class="fas fa-plus"></i>
@@ -87,13 +87,13 @@
               <table class="uk-table uk-table-striped uk-table-middle">
                 <thead>
                   <tr>
-                    <th>Team Name</th>
+                    <th>Problem Name</th>
                     <th>Delete Team</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Team 1</td>
+                    <tr *ngFor="let beginnerProblem of beginnerProblems$">
+                        <td>{{beginnerProblem.name}}</td>
                     <td>
                       <button class="uk-button uk-button-default uk-button-small" type="button">
                         <i class="fas fa-trash"></i>
@@ -109,7 +109,7 @@
         <div>
           <div class="uk-card uk-card-default uk-card-hover">
             <div class="uk-card-header">
-              Advanced Questions
+              Advanced Problems
               <span class="uk-text-center fa-plus-span">
                   <button class="uk-button uk-button-default uk-button-small" type="button">
                       <i class="fas fa-plus"></i>
@@ -120,13 +120,13 @@
               <table class="uk-table uk-table-striped uk-table-middle">
                 <thead>
                   <tr>
-                    <th>Team Name</th>
+                    <th>Problem Name</th>
                     <th>Delete Team</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Team 1</td>
+                    <tr *ngFor="let advancedProblem of advancedProblems$">
+                        <td>{{advancedProblem.name}}</td>
                     <td>
                       <button class="uk-button uk-button-default uk-button-small" type="button">
                         <i class="fas fa-trash"></i>

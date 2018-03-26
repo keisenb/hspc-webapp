@@ -25,8 +25,7 @@ import { HttpService } from './_services/http.service';
 import { EqualDirective } from './_directives/equal.directive';
 import { AdminComponent } from './admin/admin.component';
 import { DashboardService } from './_services/dashboard.service';
-import { BeginnerTeamListComponent } from './beginner-team-list/beginner-team-list.component';
-import { AdvancedTeamListComponent } from './advanced-team-list/advanced-team-list.component';
+import { TeamListComponent } from './team-list/team-list.component';
 
 @NgModule({
   declarations: [
@@ -41,8 +40,7 @@ import { AdvancedTeamListComponent } from './advanced-team-list/advanced-team-li
     NavComponent,
     EqualDirective,
     AdminComponent,
-    BeginnerTeamListComponent,
-    AdvancedTeamListComponent
+    TeamListComponent
   ],
   imports: [
     BrowserModule,

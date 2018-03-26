@@ -10,6 +10,11 @@ import { Problem } from '../_models/Problem';
 })
 export class AdminComponent implements OnInit {
 
+  private beginnerTeams$: Array<Team>;
+  private advancedTeams$: Array<Team>;
+  private beginnerProblems$: Array<Problem>;
+  private advancedProblems$: Array<Problem>;
+
   constructor(private dashboardService: DashboardService) { }
 
   ngOnInit() {
@@ -25,10 +30,7 @@ export class AdminComponent implements OnInit {
     this.dashboardService.BeginnerTeams().subscribe(
       res => {
        // todo set variable to use in html page
-        const result: Array<Team> = res.json();
-        result.forEach(element => {
-          console.log(element.id);
-        });
+         this.beginnerTeams$ = res.json();
       },
       err => {
         // todo handle errors
@@ -36,13 +38,10 @@ export class AdminComponent implements OnInit {
   }
 
   AdvancedTeams() {
-    this.dashboardService.Advancedteams().subscribe(
+    this.dashboardService.AdvancedTeams().subscribe(
       res => {
        // todo set variable to use in html page
-        const result: Array<Team> = res.json();
-        result.forEach(element => {
-          console.log(element.id);
-        });
+        this.advancedTeams$ = res.json();
       },
       err => {
         // todo handle errors
@@ -53,10 +52,7 @@ export class AdminComponent implements OnInit {
     this.dashboardService.BeginnerProblems().subscribe(
       res => {
        // todo set variable to use in html page
-        const result: Array<Problem> = res.json();
-        result.forEach(element => {
-          console.log(element.id);
-        });
+       this.beginnerProblems$ = res.json();
       },
       err => {
         // todo handle errors
@@ -67,10 +63,7 @@ export class AdminComponent implements OnInit {
     this.dashboardService.AdvancedProblems().subscribe(
       res => {
        // todo set variable to use in html page
-        const result: Array<Problem> = res.json();
-        result.forEach(element => {
-          console.log(element.id);
-        });
+       this.advancedProblems$ = res.json();
       },
       err => {
         // todo handle errors
