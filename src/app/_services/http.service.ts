@@ -36,7 +36,6 @@ export class HttpService extends Http {
   private catchErrors() {
     return (res: Response) => {
       if (res.status === 401 || res.status === 403) {
-        this.toastService.toast('Please login to continue.', 'fa-exclamation-circle', 'danger', '3000');
         this.router.navigate(['login'], { queryParams: { returnUrl: this.router.url }});
       }
       if (res.status === 500) {

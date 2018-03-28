@@ -57,4 +57,39 @@ export class DashboardService {
     return this.http.post(environment.baseUrl + '/judge/answer', body);
   }
 
+  public CreateTeam(teamName: string, beginner: boolean, advanced: boolean) {
+    if (beginner === advanced) {
+      // error here
+      return null;
+    }
+    const body = {
+      'Name': teamName,
+      'Beginner': beginner,
+      'Advanced': advanced
+    };
+    return this.http.post(environment.baseUrl + '/admin/team', body);
+  }
+
+  public CreateProblem(problemName: string, problemNumber: number, beginner: boolean, advanced: boolean) {
+    if (beginner === advanced) {
+      // error here
+      return null;
+    }
+    const body = {
+      'Name': problemName,
+      'Number': problemNumber,
+      'Beginner': beginner,
+      'Advanced': advanced
+    };
+    return this.http.post(environment.baseUrl + '/admin/problem', body);
+  }
+
+  public DeleteProblem(id: number) {
+    return this.http.delete(environment.baseUrl + '/admin/problem/' + id);
+  }
+
+  public DeleteTeam(id: number) {
+    return this.http.delete(environment.baseUrl + '/admin/team/' + id);
+  }
+
 }
