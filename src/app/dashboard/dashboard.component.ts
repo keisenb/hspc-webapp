@@ -13,9 +13,11 @@ import { Problem } from '../_models/Problem';
 })
 export class DashboardComponent implements OnInit {
 
-  private problems$: Array<Problem>;
+  private beginnerProblems$: Array<Problem>;
+  private advancedProblems$: Array<Problem>;
   private problemId: number;
   private problemName: string;
+  private beginner;
 
   constructor(private titleService: Title, private http: Http, private dashboardService: DashboardService) { }
 
@@ -23,29 +25,35 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle( 'Judgr - Dashboard' );
-    this.GetProblems();
-
+    this.GetBeginnerProblems();
+    this.GetAdvancedProblems();
   }
 
 
   showList() {
     console.log('working');
-    this.GetProblems();
+    this.GetBeginnerProblems();
+    this.GetAdvancedProblems();
     this.selected = !this.selected;
   }
 
-  GetProblems() {
-    // need to disable correct buttons based on returned values
-    this.dashboardService.Problems().subscribe(res => {
-      console.log(res.json());
-      this.problems$ = res.json();
+  GetAdvancedProblems() {
+    this.dashboardService.AdvancedProblems().subscribe(res => {
+      this.advancedProblems$ = res.json();
     });
   }
 
-  showProblem(id: number, name: string) {
+  GetBeginnerProblems() {
+    this.dashboardService.BeginnerProblems().subscribe(res => {
+      this.beginnerProblems$ = res.json();
+    });
+  }
+
+  showProblem(id: number, name: string, beginner) {
     this.selected = true;
     this.problemId = id;
     this.problemName = name;
+    this.beginner = beginner;
   }
 
 }
