@@ -13,8 +13,8 @@ import * as UIkit from 'uikit';
 })
 export class AdminComponent implements OnInit {
 
-  private teams$: Array<Team>;
-  private problems$: Array<Problem>;
+  teams$: Array<Team>;
+  problems$: Array<Problem>;
   private teamRadioValue: boolean;
   private problemRadioValue: boolean;
 
