@@ -8,6 +8,7 @@ export class ToastService {
   constructor() { }
 
   toast(message: string, icon: string, status: string, timeout: string) {
+
     UIkit.notification(
       {
         message: '<i class="fas ' + icon + '"></i> ' + message,
@@ -16,6 +17,5 @@ export class ToastService {
       }
     );
   }
-
 
 }

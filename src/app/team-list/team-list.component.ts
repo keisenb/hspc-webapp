@@ -17,11 +17,10 @@ export class TeamListComponent implements OnInit {
   private markedLoading = false;
   private correctLoading = false;
   private incorrectLoading = false;
-  private disabled = true;
 
   @Input() title = 'Team';
   @Input() beginner = false;
-  @Input() questionId: number;
+  @Input() problemId: number;
 
   ngOnInit() {
     this.teams$ = this.GetTeams(this.beginner);
@@ -30,14 +29,14 @@ export class TeamListComponent implements OnInit {
   GetTeams(beginner: boolean): Array<Team> {
     // need to disable correct buttons based on returned values
     if (beginner) {
-      this.dashboardService.BeginnerTeams().subscribe(res => {
+      this.dashboardService.BeginnerTeams(this.problemId).subscribe(res => {
         const body = <Array<Team>>res.json();
         console.log(body);
         this.teams$ = res.json();
         return body;
       });
     } else {
-      this.dashboardService.AdvancedTeams().subscribe(res => {
+      this.dashboardService.AdvancedTeams(this.problemId).subscribe(res => {
         const body = <Array<Team>>res.json();
         console.log(body);
         this.teams$ = res.json();
@@ -51,11 +50,11 @@ export class TeamListComponent implements OnInit {
     this.markedLoading = true;
     // todo mark a team for judging here
     console.log(id);
-    this.dashboardService.MarkTeamForJudging(3, id).subscribe(res => {
+    this.dashboardService.MarkTeamForJudging(this.problemId, id).subscribe(res => {
       if (res.ok) {
-        this.disabled = false;
         this.markedLoading = false;
         this.toastService.toast('Marked for judging', 'fa-check', 'success', '3000');
+        this.teams$ = this.GetTeams(this.beginner);
       }
     },
     err => {
@@ -69,15 +68,34 @@ export class TeamListComponent implements OnInit {
   correctAnswer(id: number) {
     this.correctLoading = true;
     // todo mark a team for correct answer here
-    // disable loading
-    this.toastService.toast('Correct Answer submitted', 'fa-check', 'success', '3000');
+    this.dashboardService.SubmitAnswer(this.problemId, id, true).subscribe(res => {
+      if (res.ok) {
+        this.correctLoading = false;
+        this.toastService.toast('Correct Answer submitted', 'fa-check', 'success', '3000');
+        this.teams$ = this.GetTeams(this.beginner);
+      }
+    },
+    err => {
+      this.toastService.toast('Error submitting result!', 'fa-exclamation-circle', 'danger', '3000');
+      this.markedLoading = false;
+      console.log(err);
+    });
   }
 
   incorrectAnswer(id: number) {
-    this.correctLoading = true;
-    // todo mark a team for incorrect answer here
-    // disable loading
-    this.toastService.toast('Incorrect Answer submitted', 'fa-check', 'success', '3000');
+    this.incorrectLoading = true;
+    this.dashboardService.SubmitAnswer(this.problemId, id, false).subscribe(res => {
+      if (res.ok) {
+        this.incorrectLoading = false;
+        this.teams$ = this.GetTeams(this.beginner);
+        this.toastService.toast('Incorrect Answer submitted', 'fa-check', 'success', '3000');
+      }
+    },
+    err => {
+      this.toastService.toast('Error submitting result!', 'fa-exclamation-circle', 'danger', '3000');
+      this.incorrectLoading = false;
+      console.log(err);
+    });
   }
 
 }

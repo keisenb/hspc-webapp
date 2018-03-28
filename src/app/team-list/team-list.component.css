@@ -1,3 +1,7 @@
 .uk-button {
     border:none;
 }
+
+.correct {
+    color: green
+}

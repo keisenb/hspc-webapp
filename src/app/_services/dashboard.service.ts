@@ -8,12 +8,12 @@ export class DashboardService {
   constructor(private http: HttpService) { }
 
 
-  public BeginnerTeams() {
-    return this.http.get(environment.baseUrl + '/teams/beginner');
+  public BeginnerTeams(problemId: number) {
+    return this.http.get(environment.baseUrl + '/teams/' + problemId + '/beginner');
   }
 
-  public AdvancedTeams() {
-    return this.http.get(environment.baseUrl + '/teams/advanced');
+  public AdvancedTeams(problemId: number) {
+    return this.http.get(environment.baseUrl + '/teams/' + problemId + '/advanced');
   }
 
   public Teams() {
@@ -46,6 +46,15 @@ export class DashboardService {
       'ProblemId' : problemId
     };
     return this.http.post(environment.baseUrl + '/judge/mark', body);
+  }
+
+  public SubmitAnswer(problemId: number, teamId: number, correct: boolean) {
+    const body = {
+      'TeamId': teamId,
+      'ProblemId': problemId,
+      'Correct': correct
+    };
+    return this.http.post(environment.baseUrl + '/judge/answer', body);
   }
 
 }

@@ -29,7 +29,6 @@ export class AdminComponent implements OnInit {
   BeginnerTeams() {
     this.dashboardService.BeginnerTeams().subscribe(
       res => {
-       // todo set variable to use in html page
          this.beginnerTeams$ = res.json();
       },
       err => {
@@ -40,7 +39,6 @@ export class AdminComponent implements OnInit {
   AdvancedTeams() {
     this.dashboardService.AdvancedTeams().subscribe(
       res => {
-       // todo set variable to use in html page
         this.advancedTeams$ = res.json();
       },
       err => {
@@ -51,7 +49,6 @@ export class AdminComponent implements OnInit {
   BeginnerProblems() {
     this.dashboardService.BeginnerProblems().subscribe(
       res => {
-       // todo set variable to use in html page
        this.beginnerProblems$ = res.json();
       },
       err => {
@@ -62,7 +59,6 @@ export class AdminComponent implements OnInit {
   AdvancedProblems() {
     this.dashboardService.AdvancedProblems().subscribe(
       res => {
-       // todo set variable to use in html page
        this.advancedProblems$ = res.json();
       },
       err => {
