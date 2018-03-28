@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   private result;
   loading = false;
-
+  private authorize: boolean;
 
   constructor(
     private authService: AuthService,
@@ -33,7 +33,9 @@ export class LoginComponent implements OnInit {
     this.titleService.setTitle( 'Judgr - Login' );
     this.isAuthenticated();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
-
+    if (this.route.snapshot.queryParams['returnUrl']) {
+      this.toastService.toast('Please login to continue', 'fa-exclamation-circle', 'danger', '3000');
+    }
   }
 
   onSubmit(loginForm: NgForm) {
