@@ -37,9 +37,13 @@ export class HttpService extends Http {
 
   private catchErrors() {
     return (res: Response) => {
-      if (res.status === 401 || res.status === 403) {
+      if (res.status === 401) {
         this.authService.logout();
         this.router.navigate(['login'], { queryParams: { returnUrl: this.router.url }});
+      }
+      if (res.status === 403) {
+        this.router.navigate(['/'], { queryParams: { returnUrl: this.router.url }});
+        this.toastService.toast('Insufficient privileges for page', 'fa-exclamation-circle', 'danger', '3000');
       }
       if (res.status === 500) {
         this.router.navigate(['error']);

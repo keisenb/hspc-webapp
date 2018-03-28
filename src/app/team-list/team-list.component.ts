@@ -19,26 +19,24 @@ export class TeamListComponent implements OnInit {
   private incorrectLoading = false;
 
   @Input() title = 'Team';
-  @Input() beginner = false;
+  @Input() beginner;
   @Input() problemId: number;
 
   ngOnInit() {
     this.teams$ = this.GetTeams(this.beginner);
   }
 
-  GetTeams(beginner: boolean): Array<Team> {
+  GetTeams(beginner): Array<Team> {
     // need to disable correct buttons based on returned values
-    if (beginner) {
+    if (beginner === 'beginner') {
       this.dashboardService.BeginnerTeams(this.problemId).subscribe(res => {
         const body = <Array<Team>>res.json();
-        console.log(body);
         this.teams$ = res.json();
         return body;
       });
-    } else {
+    } else if (beginner === 'advanced') {
       this.dashboardService.AdvancedTeams(this.problemId).subscribe(res => {
         const body = <Array<Team>>res.json();
-        console.log(body);
         this.teams$ = res.json();
         return body;
       });
