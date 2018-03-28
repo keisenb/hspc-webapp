@@ -7,6 +7,7 @@ import 'rxjs/add/observable/throw';
 
 import * as UIkit from 'uikit';
 import { ToastService } from './toast.service';
+import { AuthService } from './auth.service';
 
 
 @Injectable()
@@ -15,7 +16,8 @@ export class HttpService extends Http {
   constructor(backend: XHRBackend,
               private defaultOptions: RequestOptions,
               private router: Router,
-              private toastService: ToastService
+              private toastService: ToastService,
+              private authService: AuthService
             ) {
     super(backend, defaultOptions);
   }
@@ -36,6 +38,7 @@ export class HttpService extends Http {
   private catchErrors() {
     return (res: Response) => {
       if (res.status === 401 || res.status === 403) {
+        this.authService.logout();
         this.router.navigate(['login'], { queryParams: { returnUrl: this.router.url }});
       }
       if (res.status === 500) {
