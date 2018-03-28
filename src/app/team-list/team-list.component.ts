@@ -13,7 +13,7 @@ export class TeamListComponent implements OnInit {
   constructor(private dashboardService: DashboardService,
     private toastService: ToastService) { }
 
-  private teams$: Array<Team>;
+  teams$: Array<Team>;
   private markedLoading = false;
   private correctLoading = false;
   private incorrectLoading = false;
