@@ -31,7 +31,6 @@ export class DashboardComponent implements OnInit {
 
 
   showList() {
-    console.log('working');
     this.GetBeginnerProblems();
     this.GetAdvancedProblems();
     this.selected = !this.selected;
