@@ -92,4 +92,8 @@ export class DashboardService {
     return this.http.delete(environment.baseUrl + '/admin/team/' + id);
   }
 
+  public GetScores() {
+    return this.http.get(environment.baseUrl + '/scoreboard');
+  }
+
 }
